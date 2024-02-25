@@ -1,0 +1,10 @@
+__pycache__/
+Макрос/
+Пересечение целей/
+first version/
+dist/
+build/
+*.xls
+*.xlsx
+*.xlsm
+*.txt
