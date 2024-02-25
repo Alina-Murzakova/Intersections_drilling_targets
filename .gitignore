@@ -8,3 +8,4 @@ build/
 *.xlsx
 *.xlsm
 *.txt
+*.spec
