@@ -14,3 +14,4 @@ build/
 *.xlsm
 *.txt
 *.spec
+!Result/База перспективного ПФ_out.xlsx
