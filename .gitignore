@@ -1,4 +1,9 @@
 __pycache__/
+*.py[cod]
+.idea/
+.cache/
+.venv/
+venv/
 Макрос/
 Пересечение целей/
 first version/
