@@ -118,5 +118,6 @@ pyinstaller --noconfirm --onefile --windowed ^
 
 ---
 
-## 📄 License
+## 📄 Лицензия
+
 Проект лицензирован под [MIT License](LICENSE).
