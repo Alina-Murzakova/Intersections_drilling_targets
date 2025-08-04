@@ -4,7 +4,6 @@ __pycache__/
 .cache/
 .venv/
 venv/
-Макрос/
 Пересечение целей/
 first version/
 dist/
@@ -15,3 +14,4 @@ build/
 *.txt
 *.spec
 !Result/База перспективного ПФ_out.xlsx
+!Макрос VBA/База перспективного ПФ.xlsm
