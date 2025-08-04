@@ -1,6 +1,6 @@
 Attribute VB_Name = "main"
 Sub SearchIntersection()
-'Количество строк на листе
+'РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РЅР° Р»РёСЃС‚Рµ
 
 Dim FieldUniques As New Collection
 Dim FieldColumn As Range
@@ -19,15 +19,15 @@ Dim ListIntersectionTeam As New Collection
 Dim ListIntersectionTeamUniques As New Collection
 
 
-num_row = Worksheets("База перспективы").Cells(Rows.Count, 2).End(xlUp).Row
+num_row = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(Rows.Count, 2).End(xlUp).Row
 start_row = 5
 
-MinDistance = Worksheets("База перспективы").Cells(1, 3)
-DiffDepth = Worksheets("База перспективы").Cells(2, 3)
+MinDistance = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(1, 3)
+DiffDepth = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(2, 3)
 
-Set FieldColumn = Worksheets("База перспективы").Range("B5:B" & num_row)
+Set FieldColumn = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Range("B5:B" & num_row)
 
-'Worksheets("База перспективы").Range("G5:L" & num_row).NumberFormat = "0.0"
+'Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Range("G5:L" & num_row).NumberFormat = "0.0"
 
 On Error Resume Next
 For Each CellField In FieldColumn
@@ -35,38 +35,38 @@ For Each CellField In FieldColumn
 Next CellField
 On Error GoTo 0
 
-' Добавление пропущенного заголовка
-If IsEmpty(Worksheets("База перспективы").Cells(4, 19)) Then
-    Worksheets("База перспективы").Cells(4, 19) = "Z"
+' Р”РѕР±Р°РІР»РµРЅРёРµ РїСЂРѕРїСѓС‰РµРЅРЅРѕРіРѕ Р·Р°РіРѕР»РѕРІРєР°
+If IsEmpty(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(4, 19)) Then
+    Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(4, 19) = "Z"
 End If
 
-' Добавление заголовка столбца
-Worksheets("База перспективы").Cells(3, 20) = "Пересечения"
-Worksheets("База перспективы").Cells(3, 20).Font.Bold = True
-Worksheets("База перспективы").Cells(3, 20).Font.Italic = True
-Worksheets("База перспективы").Cells(4, 20) = "скв (команда/куст/объект)"
-Worksheets("База перспективы").Cells(4, 20).Font.Bold = True
-Worksheets("База перспективы").Cells(4, 20).Font.Italic = True
-Worksheets("База перспективы").Cells(4, 20).Interior.Color = RGB(189, 215, 238)
-Worksheets("База перспективы").Range("T5:T" & num_row).HorizontalAlignment = xlLeft ' Выравнивание по левому краю
+' Р”РѕР±Р°РІР»РµРЅРёРµ Р·Р°РіРѕР»РѕРІРєР° СЃС‚РѕР»Р±С†Р°
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(3, 20) = "РџРµСЂРµСЃРµС‡РµРЅРёСЏ"
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(3, 20).Font.Bold = True
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(3, 20).Font.Italic = True
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(4, 20) = "СЃРєРІ (РєРѕРјР°РЅРґР°/РєСѓСЃС‚/РѕР±СЉРµРєС‚)"
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(4, 20).Font.Bold = True
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(4, 20).Font.Italic = True
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(4, 20).Interior.Color = RGB(189, 215, 238)
+Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Range("T5:T" & num_row).HorizontalAlignment = xlLeft ' Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ
 
 
-' Создание листа "Статистика"
+' РЎРѕР·РґР°РЅРёРµ Р»РёСЃС‚Р° "РЎС‚Р°С‚РёСЃС‚РёРєР°"
 Dim NewSh As Worksheet
 On Error Resume Next
-Set NewSh = Sheets("Статистика")
+Set NewSh = Sheets("РЎС‚Р°С‚РёСЃС‚РёРєР°")
 Application.DisplayAlerts = False
 If Err <> 0 Then
-    Sheets.Add(After:=Sheets("База перспективы")).Name = "Статистика"
+    Sheets.Add(After:=Sheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹")).Name = "РЎС‚Р°С‚РёСЃС‚РёРєР°"
 Else
     NewSh.Delete
-    Sheets.Add(After:=Sheets("База перспективы")).Name = "Статистика"
+    Sheets.Add(After:=Sheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹")).Name = "РЎС‚Р°С‚РёСЃС‚РёРєР°"
 End If
 Application.DisplayAlerts = True
-'If NewSh Is Nothing Then Sheets.Add(After:=Sheets("База перспективы")).Name = "Статистика"
-Worksheets("Статистика").Cells(1, 1) = "Месторождение"
-Worksheets("Статистика").Cells(1, 2) = "Количество пересечений"
-Worksheets("Статистика").Cells(1, 3) = "Пересекающиеся команды"
+'If NewSh Is Nothing Then Sheets.Add(After:=Sheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹")).Name = "РЎС‚Р°С‚РёСЃС‚РёРєР°"
+Worksheets("РЎС‚Р°С‚РёСЃС‚РёРєР°").Cells(1, 1) = "РњРµСЃС‚РѕСЂРѕР¶РґРµРЅРёРµ"
+Worksheets("РЎС‚Р°С‚РёСЃС‚РёРєР°").Cells(1, 2) = "РљРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРµСЃРµС‡РµРЅРёР№"
+Worksheets("РЎС‚Р°С‚РёСЃС‚РёРєР°").Cells(1, 3) = "РџРµСЂРµСЃРµРєР°СЋС‰РёРµСЃСЏ РєРѕРјР°РЅРґС‹"
 
 
 num_field = 1
@@ -75,142 +75,142 @@ For Each Field In FieldUniques
     
     Debug.Print (Field)
 
-    num_intersection = 0 ' Количество пересечений на месторождении
+    num_intersection = 0 ' РљРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРµСЃРµС‡РµРЅРёР№ РЅР° РјРµСЃС‚РѕСЂРѕР¶РґРµРЅРёРё
     start_hole_first = 7
     start_hole_second = 14
     
-    ' Обход текущих скважин
+    ' РћР±С…РѕРґ С‚РµРєСѓС‰РёС… СЃРєРІР°Р¶РёРЅ
     For i = start_row To num_row
         'Debug.Print (i)
         
-        ' Проверка строки на нужное месторождение
-        If Worksheets("База перспективы").Cells(i, 2) = Field Then
+        ' РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё РЅР° РЅСѓР¶РЅРѕРµ РјРµСЃС‚РѕСЂРѕР¶РґРµРЅРёРµ
+        If Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, 2) = Field Then
         
-            ' Пропускаем pl
-            If Worksheets("База перспективы").Cells(i, 5) = "pl" Then
-                Worksheets("База перспективы").Cells(i, 20) = ""
+            ' РџСЂРѕРїСѓСЃРєР°РµРј pl
+            If Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, 5) = "pl" Then
+                Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, 20) = ""
             Else
             
-                ColumnStartHoleCurrent.Add start_hole_first ' Начало первого ствола
+                ColumnStartHoleCurrent.Add start_hole_first ' РќР°С‡Р°Р»Рѕ РїРµСЂРІРѕРіРѕ СЃС‚РІРѕР»Р°
                 
-                ' Проверка есть ли второй ствол
-                If Not IsEmpty(Worksheets("База перспективы").Cells(i, start_hole_second)) Then
-                    ColumnStartHoleCurrent.Add start_hole_second ' Начало второго ствола
+                ' РџСЂРѕРІРµСЂРєР° РµСЃС‚СЊ Р»Рё РІС‚РѕСЂРѕР№ СЃС‚РІРѕР»
+                If Not IsEmpty(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole_second)) Then
+                    ColumnStartHoleCurrent.Add start_hole_second ' РќР°С‡Р°Р»Рѕ РІС‚РѕСЂРѕРіРѕ СЃС‚РІРѕР»Р°
                 End If
                 
-                ' Обход стволов скважины
+                ' РћР±С…РѕРґ СЃС‚РІРѕР»РѕРІ СЃРєРІР°Р¶РёРЅС‹
                 For Each start_hole In ColumnStartHoleCurrent
-                    x1_current = Worksheets("База перспективы").Cells(i, start_hole)
-                    y1_current = Worksheets("База перспективы").Cells(i, start_hole + 1)
-                    z1_current = Worksheets("База перспективы").Cells(i, start_hole + 2)
-                    x3_current = Worksheets("База перспективы").Cells(i, start_hole + 3)
-                    y3_current = Worksheets("База перспективы").Cells(i, start_hole + 4)
-                    z3_current = Worksheets("База перспективы").Cells(i, start_hole + 5)
+                    x1_current = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole)
+                    y1_current = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + 1)
+                    z1_current = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + 2)
+                    x3_current = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + 3)
+                    y3_current = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + 4)
+                    z3_current = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + 5)
                     
                     'For num_coord = 0 To 5
-                        'ListCoord.Add Worksheets("База перспективы").Cells(i, start_hole + num_coord)
+                        'ListCoord.Add Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord)
                         
                         'If ListCoord.Item(num_coord + 1) = "-" Then
                             'ListCoord(num_coord + 1) = ""
-                            'Worksheets("База перспективы").Cells(i, start_hole + num_coord) = ListCoord(num_coord + 1)
+                            'Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord) = ListCoord(num_coord + 1)
                         'ElseIf ListCoord(num_coord + 1) < 0 Then
                             'ListCoord(num_coord + 1) = ListCoord(num_coord + 1) * (-1)
-                            'Worksheets("База перспективы").Cells(i, start_hole + num_coord) = ListCoord(num_coord + 1)
+                            'Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord) = ListCoord(num_coord + 1)
                         'End If
                                         
                     'Next num_coord
                     
                     
                     For num_coord = LBound(CoordArrayCurrent) To UBound(CoordArrayCurrent)
-                        CoordArrayCurrent(num_coord) = Worksheets("База перспективы").Cells(i, start_hole + num_coord)
+                        CoordArrayCurrent(num_coord) = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord)
                         
                         If CoordArrayCurrent(num_coord) = "-" Or CoordArrayCurrent(num_coord) = 0 Then
                             CoordArrayCurrent(num_coord) = Empty
-                            Worksheets("База перспективы").Cells(i, start_hole + num_coord) = CoordArrayCurrent(num_coord)
+                            Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord) = CoordArrayCurrent(num_coord)
                         ElseIf CoordArrayCurrent(num_coord) < 0 Then
                             CoordArrayCurrent(num_coord) = CDbl(CoordArrayCurrent(num_coord) * (-1))
-                            Worksheets("База перспективы").Cells(i, start_hole + num_coord) = CoordArrayCurrent(num_coord)
+                            Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord) = CoordArrayCurrent(num_coord)
                         ElseIf TypeName(CoordArrayCurrent(num_coord)) = "String" Then
-                            CoordArrayCurrent(num_coord) = CDbl(Worksheets("База перспективы").Cells(i, start_hole + num_coord))
-                            Worksheets("База перспективы").Cells(i, start_hole + num_coord) = CoordArrayCurrent(num_coord)
+                            CoordArrayCurrent(num_coord) = CDbl(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord))
+                            Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, start_hole + num_coord) = CoordArrayCurrent(num_coord)
                         End If
                         
                     Next num_coord
                     
-                    ' Обход окружающих скважин
+                    ' РћР±С…РѕРґ РѕРєСЂСѓР¶Р°СЋС‰РёС… СЃРєРІР°Р¶РёРЅ
                     For j = start_row To num_row
                         'Debug.Print (j)
                     
-                        ' Не проверять эту же скважину
+                        ' РќРµ РїСЂРѕРІРµСЂСЏС‚СЊ СЌС‚Сѓ Р¶Рµ СЃРєРІР°Р¶РёРЅСѓ
                         If Not i = j Then
             
-                            ' Проверка строки на нужное месторождение
-                            If Worksheets("База перспективы").Cells(j, 2) = Field Then
+                            ' РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё РЅР° РЅСѓР¶РЅРѕРµ РјРµСЃС‚РѕСЂРѕР¶РґРµРЅРёРµ
+                            If Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 2) = Field Then
                             
-                                ' Пропускаем pl
-                                If Worksheets("База перспективы").Cells(j, 5) = "pl" Then
-                                    Worksheets("База перспективы").Cells(j, 20) = ""
+                                ' РџСЂРѕРїСѓСЃРєР°РµРј pl
+                                If Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 5) = "pl" Then
+                                    Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 20) = ""
                                 Else
-                                    ColumnStartHoleRound.Add start_hole_first ' Начало первого ствола
+                                    ColumnStartHoleRound.Add start_hole_first ' РќР°С‡Р°Р»Рѕ РїРµСЂРІРѕРіРѕ СЃС‚РІРѕР»Р°
                         
-                                    ' Проверка есть ли второй ствол
-                                    If Not IsEmpty(Worksheets("База перспективы").Cells(j, start_hole_second)) Then
-                                        ColumnStartHoleRound.Add start_hole_second ' Начало второго ствола
+                                    ' РџСЂРѕРІРµСЂРєР° РµСЃС‚СЊ Р»Рё РІС‚РѕСЂРѕР№ СЃС‚РІРѕР»
+                                    If Not IsEmpty(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_second)) Then
+                                        ColumnStartHoleRound.Add start_hole_second ' РќР°С‡Р°Р»Рѕ РІС‚РѕСЂРѕРіРѕ СЃС‚РІРѕР»Р°
                                     End If
                                     
-                                    ' Обход стволов скважины
+                                    ' РћР±С…РѕРґ СЃС‚РІРѕР»РѕРІ СЃРєРІР°Р¶РёРЅС‹
                                     For Each start_hole_round In ColumnStartHoleRound
                                         
                                         'For num_coord = 0 To 5
-                                            'ListCoord.Add Worksheets("База перспективы").Cells(j, start_hole_round + num_coord)
+                                            'ListCoord.Add Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord)
                                             
                                             'If ListCoord.Item(num_coord + 1) = "-" Then
                                                 'ListCoord(num_coord + 1) = ""
-                                                'Worksheets("База перспективы").Cells(j, start_hole_round + num_coord) = ListCoord(num_coord + 1)
+                                                'Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord) = ListCoord(num_coord + 1)
                                             'ElseIf ListCoord(num_coord + 1) < 0 Then
                                                 'ListCoord(num_coord + 1) = ListCoord(num_coord + 1) * (-1)
-                                                'Worksheets("База перспективы").Cells(j, start_hole_round + num_coord) = ListCoord(num_coord + 1)
+                                                'Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord) = ListCoord(num_coord + 1)
                                             'End If
                                                             
                                         'Next num_coord
                                         
                                         For num_coord = LBound(CoordArrayRound) To UBound(CoordArrayRound)
-                                            CoordArrayRound(num_coord) = Worksheets("База перспективы").Cells(j, start_hole_round + num_coord)
+                                            CoordArrayRound(num_coord) = Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord)
                                             
                                             If CoordArrayRound(num_coord) = "-" Or CoordArrayRound(num_coord) = 0 Then
                                                 CoordArrayRound(num_coord) = Empty
-                                                Worksheets("База перспективы").Cells(j, start_hole_round + num_coord) = CoordArrayRound(num_coord)
+                                                Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord) = CoordArrayRound(num_coord)
                                             ElseIf CoordArrayRound(num_coord) < 0 Then
                                                 CoordArrayRound(num_coord) = CDbl(CoordArrayRound(num_coord) * (-1))
-                                                Worksheets("База перспективы").Cells(j, start_hole_round + num_coord) = CoordArrayRound(num_coord)
+                                                Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord) = CoordArrayRound(num_coord)
                                             ElseIf TypeName(CoordArrayRound(num_coord)) = "String" Then
-                                                CoordArrayRound(num_coord) = CDbl(Worksheets("База перспективы").Cells(j, start_hole_round + num_coord))
-                                                Worksheets("База перспективы").Cells(j, start_hole_round + num_coord) = CoordArrayRound(num_coord)
+                                                CoordArrayRound(num_coord) = CDbl(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord))
+                                                Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, start_hole_round + num_coord) = CoordArrayRound(num_coord)
                                             End If
                                             
                                         Next num_coord
                                         
                                         
-                                        ' Проверка принадлежности к одному объекту по абс.отметка
+                                        ' РџСЂРѕРІРµСЂРєР° РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚Рё Рє РѕРґРЅРѕРјСѓ РѕР±СЉРµРєС‚Сѓ РїРѕ Р°Р±СЃ.РѕС‚РјРµС‚РєР°
                                         If Abs(CoordArrayCurrent(2) - CoordArrayRound(2)) < DiffDepth Or CoordArrayCurrent(2) = "" Or CoordArrayRound(2) = "" Then
                                             
-                                            ' Проверка на пересечение отрезков скважин
+                                            ' РџСЂРѕРІРµСЂРєР° РЅР° РїРµСЂРµСЃРµС‡РµРЅРёРµ РѕС‚СЂРµР·РєРѕРІ СЃРєРІР°Р¶РёРЅ
                                             If functions.Intersect(CoordArrayCurrent(0), CoordArrayCurrent(1), CoordArrayCurrent(3), CoordArrayCurrent(4), _
                                             CoordArrayRound(0), CoordArrayRound(1), CoordArrayRound(3), CoordArrayRound(4)) Then
                                                 num_intersection = num_intersection + 1
-                                                ListIntersection.Add CStr(Worksheets("База перспективы").Cells(j, 6)) + " (" + CStr(Worksheets("База перспективы").Cells(j, 1)) + _
-                                                                "/ " + CStr(Worksheets("База перспективы").Cells(j, 3)) + "/ " + CStr(Worksheets("База перспективы").Cells(j, 4)) + ")"
+                                                ListIntersection.Add CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 6)) + " (" + CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 1)) + _
+                                                                "/ " + CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 3)) + "/ " + CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 4)) + ")"
                                                 
-                                                ListIntersectionTeam.Add CStr(Worksheets("База перспективы").Cells(i, 1))
-                                                ListIntersectionTeam.Add CStr(Worksheets("База перспективы").Cells(j, 1))
+                                                ListIntersectionTeam.Add CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, 1))
+                                                ListIntersectionTeam.Add CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 1))
                                                 
                                             ElseIf functions.MinLength(CoordArrayCurrent(0), CoordArrayCurrent(1), CoordArrayCurrent(3), CoordArrayCurrent(4), _
                                             CoordArrayRound(0), CoordArrayRound(1), CoordArrayRound(3), CoordArrayRound(4)) < MinDistance Then
                                                 num_intersection = num_intersection + 1
-                                                ListIntersection.Add CStr(Worksheets("База перспективы").Cells(j, 6)) + " (" + CStr(Worksheets("База перспективы").Cells(j, 1)) + _
-                                                                "/ " + CStr(Worksheets("База перспективы").Cells(j, 3)) + "/ " + CStr(Worksheets("База перспективы").Cells(j, 4)) + ")"
-                                                ListIntersectionTeam.Add CStr(Worksheets("База перспективы").Cells(i, 1))
-                                                ListIntersectionTeam.Add CStr(Worksheets("База перспективы").Cells(j, 1))
+                                                ListIntersection.Add CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 6)) + " (" + CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 1)) + _
+                                                                "/ " + CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 3)) + "/ " + CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 4)) + ")"
+                                                ListIntersectionTeam.Add CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, 1))
+                                                ListIntersectionTeam.Add CStr(Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(j, 1))
                                                                                     
                                             End If
                                                                      
@@ -225,9 +225,9 @@ For Each Field In FieldUniques
                     Next j
                     
                     If ListIntersection.Count > 0 Then
-                        Worksheets("База перспективы").Cells(i, 20) = Join(functions.CollectionToArray(ListIntersection), ",")
+                        Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, 20) = Join(functions.CollectionToArray(ListIntersection), ",")
                     Else
-                        Worksheets("База перспективы").Cells(i, 20) = ""
+                        Worksheets("Р‘Р°Р·Р° РїРµСЂСЃРїРµРєС‚РёРІС‹").Cells(i, 20) = ""
                     End If
                         
         
@@ -248,13 +248,13 @@ For Each Field In FieldUniques
     Next Team
     On Error GoTo 0
     
-    ' Заполнение листа "Статистика"
-    Worksheets("Статистика").Cells(num_field + 1, 1) = FieldUniques.Item(num_field)
-    Worksheets("Статистика").Cells(num_field + 1, 2) = num_intersection / 2
+    ' Р—Р°РїРѕР»РЅРµРЅРёРµ Р»РёСЃС‚Р° "РЎС‚Р°С‚РёСЃС‚РёРєР°"
+    Worksheets("РЎС‚Р°С‚РёСЃС‚РёРєР°").Cells(num_field + 1, 1) = FieldUniques.Item(num_field)
+    Worksheets("РЎС‚Р°С‚РёСЃС‚РёРєР°").Cells(num_field + 1, 2) = num_intersection / 2
     If ListIntersectionTeamUniques.Count > 0 Then
-        Worksheets("Статистика").Cells(num_field + 1, 3) = Join(functions.CollectionToArray(ListIntersectionTeamUniques), ", ")
+        Worksheets("РЎС‚Р°С‚РёСЃС‚РёРєР°").Cells(num_field + 1, 3) = Join(functions.CollectionToArray(ListIntersectionTeamUniques), ", ")
     Else
-        Worksheets("Статистика").Cells(num_field + 1, 3) = ""
+        Worksheets("РЎС‚Р°С‚РёСЃС‚РёРєР°").Cells(num_field + 1, 3) = ""
     End If
     
     num_field = num_field + 1

@@ -1,6 +1,6 @@
 Attribute VB_Name = "functions"
 
-'Проверка ориентации
+'РџСЂРѕРІРµСЂРєР° РѕСЂРёРµРЅС‚Р°С†РёРё
 
 Function CheckOrientation(x1 As Variant, y1 As Variant, x2 As Variant, y2 As Variant, x3 As Variant, y3 As Variant)
     Dim Orientation As Double
@@ -10,11 +10,11 @@ Function CheckOrientation(x1 As Variant, y1 As Variant, x2 As Variant, y2 As Var
     
     If x2 = Empty Or x3 = Empty Then
         result = 0
-    ElseIf Orientation > 0 Then 'По часовой стрелке
+    ElseIf Orientation > 0 Then 'РџРѕ С‡Р°СЃРѕРІРѕР№ СЃС‚СЂРµР»РєРµ
         result = 1
-    ElseIf Number < 0 Then 'Против часовой стрелки
+    ElseIf Number < 0 Then 'РџСЂРѕС‚РёРІ С‡Р°СЃРѕРІРѕР№ СЃС‚СЂРµР»РєРё
         result = 2
-    Else ' Коллинеарны
+    Else ' РљРѕР»Р»РёРЅРµР°СЂРЅС‹
         result = 0
     End If
     
@@ -23,7 +23,7 @@ Function CheckOrientation(x1 As Variant, y1 As Variant, x2 As Variant, y2 As Var
 End Function
 
 
-'Проверка пересечений отрезков
+'РџСЂРѕРІРµСЂРєР° РїРµСЂРµСЃРµС‡РµРЅРёР№ РѕС‚СЂРµР·РєРѕРІ
 
 Function Intersect(x1_current As Variant, y1_current As Variant, x3_current As Variant, y3_current As Variant, _
                     x1_round As Variant, y1_round As Variant, x3_round As Variant, y3_round As Variant)
@@ -36,7 +36,7 @@ Function Intersect(x1_current As Variant, y1_current As Variant, x3_current As V
     
 End Function
 
-' Расстояние между двумя точками
+' Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё
 
 Function LenBetweenPoints(x1, y1, x2, y2)
 
@@ -44,7 +44,7 @@ Function LenBetweenPoints(x1, y1, x2, y2)
     
 End Function
 
-' Минимальное расстояние между отрезком и точкой
+' РњРёРЅРёРјР°Р»СЊРЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РѕС‚СЂРµР·РєРѕРј Рё С‚РѕС‡РєРѕР№
 
 Function LenBetweenSegmentPoint(x1, y1, x3, y3, x_round, y_round)
     Dim L1 As Double
@@ -57,9 +57,9 @@ Function LenBetweenSegmentPoint(x1, y1, x3, y3, x_round, y_round)
     Dim C As Double
     Dim P As Double
     
-    L1 = LenBetweenPoints(x_round, y_round, x1, y1) 'Расстояние от одного конца отрезка до конца скважины окружения
-    L2 = LenBetweenPoints(x_round, y_round, x3, y3) 'Расстояние от другого конца отрезка до конца скважины окружения
-    L = LenBetweenPoints(x1, y1, x3, y3) ' Длина ГС
+    L1 = LenBetweenPoints(x_round, y_round, x1, y1) 'Р Р°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ РѕРґРЅРѕРіРѕ РєРѕРЅС†Р° РѕС‚СЂРµР·РєР° РґРѕ РєРѕРЅС†Р° СЃРєРІР°Р¶РёРЅС‹ РѕРєСЂСѓР¶РµРЅРёСЏ
+    L2 = LenBetweenPoints(x_round, y_round, x3, y3) 'Р Р°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ РґСЂСѓРіРѕРіРѕ РєРѕРЅС†Р° РѕС‚СЂРµР·РєР° РґРѕ РєРѕРЅС†Р° СЃРєРІР°Р¶РёРЅС‹ РѕРєСЂСѓР¶РµРЅРёСЏ
+    L = LenBetweenPoints(x1, y1, x3, y3) ' Р”Р»РёРЅР° Р“РЎ
       
     If (L1 * L1 > L2 * L2 + L * L) Or (L2 * L2 > L1 * L1 + L * L) Then
         P = WorksheetFunction.Min(L1, L2)
@@ -92,7 +92,7 @@ Function LenBetweenSegmentPoint(x1, y1, x3, y3, x_round, y_round)
 End Function
 
 
-' Минимальное расстояние между двумя непересекающимися отрезками
+' РњРёРЅРёРјР°Р»СЊРЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РґРІСѓРјСЏ РЅРµРїРµСЂРµСЃРµРєР°СЋС‰РёРјРёСЃСЏ РѕС‚СЂРµР·РєР°РјРё
 Function MinLength(x1_current, y1_current, x3_current, y3_current, x1_round, y1_round, x3_round, y3_round)
     
     MinLength = WorksheetFunction.Min(LenBetweenSegmentPoint(x1_current, y1_current, x3_current, y3_current, x1_round, y1_round), _
@@ -102,7 +102,7 @@ Function MinLength(x1_current, y1_current, x3_current, y3_current, x1_round, y1_
     
 End Function
 
-' Преобразование коллеции в массив
+' РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєРѕР»Р»РµС†РёРё РІ РјР°СЃСЃРёРІ
 Function CollectionToArray(myCol As Collection) As Variant
 
     Dim result As Variant
